@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IVIM MRI Algorithm Fitting Dashboard</title>
+  <!-- Load Plotly.js into the DOM -->
+  <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+  <script src="index.js"></script>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div id="root">
+    <header>
+      <h1 class="bar-title">IVIM MRI Algorithm Fitting Dashboard</h1>
+      <hr class="divider" />
+    </header>
+    <main>
+      <div class="filter-wrapper">
+        <label for="algorithm-select">Algorithm:</label>
+        <select id="algorithm-select" class="filter-menu">
+          <option value="ETP_SRI_LinearFitting">ETP_SRI_LinearFitting</option>
+          <option value="IAR_LU_biexp">IAR_LU_biexp</option>
+          <option value="IAR_LU_subtracted">IAR_LU_subtracted</option>
+          <option value="IAR_LU_segmented_2step">IAR_LU_segmented_2step</option>
+        </select>
+
+        <label for="snr-select">SNR:</label>
+        <select id="snr-select" class="filter-menu">
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+          <option value="40">40</option>
+        </select>
+
+        <label for="type-select">Type: </label>
+        <select id="type-select" class="filter-menu">
+          <option value="deffusion">Deffusion</option>
+          <option value="perfusion">Perfusion</option>
+          <option value="perfusion-fraction">Perfusion Fraction</option>
+          <option value="40">40</option>
+        </select>
+      </div>
+      <div class="chart-card" id="myDiv">
+        <!-- Chart will be rendered here -->
+      </div>
+    </main>
+  </div>
+</body>
+</html>
