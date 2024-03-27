@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
 
             var layout = {
-                title: 'Deffusion Box Plots'
+                title: 'Diffusion Box Plots'
             };
 
             Plotly.newPlot('myDiv', plots, layout);
