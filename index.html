@@ -50,10 +50,69 @@
           <option value="Dp_fitted">Perfusion</option>
           <option value="f_fitted">Perfusion Fraction</option>
         </select>
+
+        <label for="range-select">Range:</label>
+        <select id="range-select" class="filter-menu">
+          <option value="2">2</option>
+          <option value="4">4</option>
+          <option value="6">6</option>
+          <option value="8">8</option>
+          <option value="10">10</option>
+        </select>
       </div>
       <div class="chart-card" id="myDiv">
         <!-- Chart will be rendered here -->
       </div>
+
+
+            <!-- New section for region-based plot -->
+      <div class="filter-wrapper">
+        <label for="region-select">Region:</label>
+        <select id="region-select" class="filter-menu">
+          <option value="Liver">Liver</option>
+          <option value="Vein">Vein</option>
+          <option value="Myocardium LV">Myocardium LV</option>
+          <option value="Myocardium RV">Myocardium RV</option>
+          <option value="Blood RA">Blood RA</option>
+          <option value="Blood RV">Blood RV</option>
+          <option value="st wall">st wall</option>
+          <option value="spleen">spleen</option>
+          <option value="Artery">Artery</option>
+          <option value="Artery">Artery</option>
+
+          <!-- Options will be populated dynamically -->
+        </select>
+
+        <label for="snr-region-select">SNR:</label>
+        <select id="snr-region-select" class="filter-menu">
+          <option value="10">10</option>
+          <option value="30">30</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+          <option value="200">200</option>
+        </select>
+
+        <label for="type-region-select">Type: </label>
+        <select id="type-region-select" class="filter-menu">
+          <option value="D_fitted">Diffusion</option>
+          <option value="Dp_fitted">Perfusion</option>
+          <option value="f_fitted">Perfusion Fraction</option>
+        </select>
+
+        <label for="range-region-select">Range:</label>
+        <select id="range-region-select" class="filter-menu">
+          <option value="2">2</option>
+          <option value="4">4</option>
+          <option value="6">6</option>
+          <option value="8">8</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+      <div class="chart-card" id="regionDiv">
+        <!-- New chart will be rendered here -->
+      </div>
+
+      
     </main>
   </div>
 </body>
