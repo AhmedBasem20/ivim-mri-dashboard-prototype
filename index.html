@@ -51,14 +51,13 @@
           <option value="f_fitted">Perfusion Fraction</option>
         </select>
 
-        <label for="range-select">Range:</label>
-        <select id="range-select" class="filter-menu">
-          <option value="2">2</option>
-          <option value="4">4</option>
-          <option value="6">6</option>
-          <option value="8">8</option>
-          <option value="10">10</option>
-        </select>
+        <div class="slider-container">
+          <span class="slider-label">Range:</span>
+          <button id="decrement-range" class="slider-button">-</button>
+          <input type="range" id="range-slider" class="slider" min="2" max="100" step="2" value="2">
+          <button id="increment-range" class="slider-button">+</button>
+          <span id="range-value" class="slider-value">2</span><span>x</span>
+      </div>
       </div>
       <div class="chart-card" id="myDiv">
         <!-- Chart will be rendered here -->
@@ -78,7 +77,7 @@
           <option value="st wall">st wall</option>
           <option value="spleen">spleen</option>
           <option value="Artery">Artery</option>
-          <option value="Artery">Artery</option>
+          <option value="small intestine">small intestine</option>
 
           <!-- Options will be populated dynamically -->
         </select>
@@ -99,14 +98,13 @@
           <option value="f_fitted">Perfusion Fraction</option>
         </select>
 
-        <label for="range-region-select">Range:</label>
-        <select id="range-region-select" class="filter-menu">
-          <option value="2">2</option>
-          <option value="4">4</option>
-          <option value="6">6</option>
-          <option value="8">8</option>
-          <option value="10">10</option>
-        </select>
+        <div class="slider-container">
+          <span class="slider-label">Range:</span>
+          <button id="decrement-range-region" class="slider-button">-</button>
+          <input type="range" id="range-slider-region" class="slider" min="2" max="100" step="2" value="2">
+          <button id="increment-range-region" class="slider-button">+</button>
+          <span id="range-value-region" class="slider-value">2</span><span>x</span>
+      </div>
       </div>
       <div class="chart-card" id="regionDiv">
         <!-- New chart will be rendered here -->

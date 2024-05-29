@@ -31,11 +31,36 @@ document.addEventListener('DOMContentLoaded', function() {
         drawBoxPlot(data, selectedAlgorithm, selectedSNR, selectedType, selectedRange);
     });
 
-    // Add event listener to range select
-    const rangeSelect = document.getElementById('range-select');
-    rangeSelect.addEventListener('change', function(event) {
-        selectedRange = event.target.value;
+    // Add event listeners to range slider and buttons
+    const rangeSlider = document.getElementById('range-slider');
+    const rangeValue = document.getElementById('range-value');
+    const decrementRange = document.getElementById('decrement-range');
+    const incrementRange = document.getElementById('increment-range');
+
+    function updateRange(value) {
+        selectedRange = value;
+        rangeValue.textContent = value;
         drawBoxPlot(data, selectedAlgorithm, selectedSNR, selectedType, selectedRange);
+    }
+
+    rangeSlider.addEventListener('input', function(event) {
+        updateRange(event.target.value);
+    });
+
+    decrementRange.addEventListener('click', function() {
+        let newValue = parseInt(rangeSlider.value) - 2;
+        if (newValue >= 2) {
+            rangeSlider.value = newValue;
+            updateRange(newValue);
+        }
+    });
+
+    incrementRange.addEventListener('click', function() {
+        let newValue = parseInt(rangeSlider.value) + 2;
+        if (newValue <= 100) {
+            rangeSlider.value = newValue;
+            updateRange(newValue);
+        }
     });
 
     // Add event listener to region select
@@ -58,12 +83,37 @@ document.addEventListener('DOMContentLoaded', function() {
             drawRegionBoxPlot(data, selectedRegion, selectedSNRRegion, selectedTypeRegion, selectedRangeRegion);
         });
     
-        // Add event listener to range select
-        const rangeRegionSelect = document.getElementById('range-region-select');
-        rangeRegionSelect.addEventListener('change', function(event) {
-            selectedRangeRegion = event.target.value;
+        // Add event listeners to range region slider and buttons
+        const rangeSliderRegion = document.getElementById('range-slider-region');
+        const rangeValueRegion = document.getElementById('range-value-region');
+        const decrementRangeRegion = document.getElementById('decrement-range-region');
+        const incrementRangeRegion = document.getElementById('increment-range-region');
+
+        function updateRangeRegion(value) {
+            selectedRangeRegion = value;
+            rangeValueRegion.textContent = value;
             drawRegionBoxPlot(data, selectedRegion, selectedSNRRegion, selectedTypeRegion, selectedRangeRegion);
+        }
+
+        rangeSliderRegion.addEventListener('input', function(event) {
+            updateRangeRegion(event.target.value);
         });
+
+        decrementRangeRegion.addEventListener('click', function() {
+            let newValue = parseInt(rangeSliderRegion.value) - 2;
+            if (newValue >= 2) {
+                rangeSliderRegion.value = newValue;
+                updateRangeRegion(newValue);
+            }
+        });
+
+    incrementRangeRegion.addEventListener('click', function() {
+        let newValue = parseInt(rangeSliderRegion.value) + 2;
+        if (newValue <= 100) {
+            rangeSliderRegion.value = newValue;
+            updateRangeRegion(newValue);
+        }
+    });
 
     Papa.parse('test_output.csv', {
         download: true,
