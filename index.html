@@ -13,6 +13,9 @@
 </head>
 <body>
   <div id="root">
+    <div class="loading-overlay hidden" id="loadingOverlay">
+      <div class="spinner"></div>
+    </div>
     <header>
       <h1 class="bar-title">IVIM MRI Algorithm Fitting Dashboard</h1>
       <hr class="divider" />
@@ -21,27 +24,12 @@
       <div class="filter-wrapper">
         <label for="algorithm-select">Algorithm:</label>
         <select id="algorithm-select" class="filter-menu">
-          <option value="ETP_SRI_LinearFitting">ETP_SRI_LinearFitting</option>
-          <option value="IAR_LU_biexp">IAR_LU_biexp</option>
-          <option value="IAR_LU_modified_mix">IAR_LU_modified_mix</option>
-          <option value="IAR_LU_modified_topopro">IAR_LU_modified_topopro</option>
-          <option value="IAR_LU_segmented_2step">IAR_LU_segmented_2step</option>
-          <option value="IAR_LU_segmented_3step">IAR_LU_segmented_3step</option>
-          <option value="OGC_AmsterdamUMC_Bayesian_biexp">OGC_AmsterdamUMC_Bayesian_biexp</option>
-          <option value="OGC_AmsterdamUMC_biexp">OGC_AmsterdamUMC_biexp</option>
-          <option value="OGC_AmsterdamUMC_biexp_segmented">OGC_AmsterdamUMC_biexp_segmented</option>
-          <option value="PV_MUMC_biexp">PV_MUMC_biexp</option>
-          <option value="IAR_LU_subtracted">IAR_LU_subtracted</option>
-          <option value="PvH_KB_NKI_IVIMfit">PvH_KB_NKI_IVIMfit</option>
+          <!-- Options will be populated dynamically -->
         </select>
 
         <label for="snr-select">SNR:</label>
         <select id="snr-select" class="filter-menu">
-          <option value="10">10</option>
-          <option value="30">30</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
-          <option value="200">200</option>
+          <!-- Options will be populated dynamically -->
         </select>
 
         <label for="type-select">Type: </label>
@@ -68,27 +56,12 @@
       <div class="filter-wrapper">
         <label for="region-select">Region:</label>
         <select id="region-select" class="filter-menu">
-          <option value="Liver">Liver</option>
-          <option value="Vein">Vein</option>
-          <option value="Myocardium LV">Myocardium LV</option>
-          <option value="Myocardium RV">Myocardium RV</option>
-          <option value="Blood RA">Blood RA</option>
-          <option value="Blood RV">Blood RV</option>
-          <option value="st wall">st wall</option>
-          <option value="spleen">spleen</option>
-          <option value="Artery">Artery</option>
-          <option value="small intestine">small intestine</option>
-
           <!-- Options will be populated dynamically -->
         </select>
 
         <label for="snr-region-select">SNR:</label>
         <select id="snr-region-select" class="filter-menu">
-          <option value="10">10</option>
-          <option value="30">30</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
-          <option value="200">200</option>
+          <!-- Options will be populated dynamically -->
         </select>
 
         <label for="type-region-select">Type: </label>

@@ -8,6 +8,21 @@ document.addEventListener('DOMContentLoaded', function() {
     let selectedSNRRegion = '10';
     let selectedTypeRegion = 'D_fitted';
     let selectedRangeRegion = 2;
+
+
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const mainContent = document.getElementsByTagName('main')[0];
+    function showLoading() {
+        mainContent.classList.add('hidden');
+        loadingOverlay.classList.remove('hidden');
+    }
+
+    function hideLoading() {
+        loadingOverlay.classList.add('hidden');
+        mainContent.classList.remove('hidden')
+    }
+
+
     // Add event listener to algorithm select
     const algorithmSelect = document.getElementById('algorithm-select');
     algorithmSelect.addEventListener('change', function(event) {
@@ -114,21 +129,37 @@ document.addEventListener('DOMContentLoaded', function() {
             updateRangeRegion(newValue);
         }
     });
+    showLoading();
 
     Papa.parse('test_output.csv', {
         download: true,
         header: true,
         complete: results => {
             data = results;
-            //populateRegions(data);
+            hideLoading();
+            populateOptions(data);
             drawBoxPlot(data, selectedAlgorithm, selectedSNR, selectedType, selectedRange);
             drawRegionBoxPlot(data, selectedRegion, selectedSNRRegion, selectedTypeRegion, selectedRangeRegion);
 
         }
     });
 
-    function populateRegions(data) {
-        const regions = new Set(data.data.map(obj => obj.Region));
+    function populateOptions(data) {
+
+        //-----Algorithms options------
+        const AlgorithmsSet = new Set(data.data.map(obj => obj.Algorithm));
+        const algorithms = Array.from(AlgorithmsSet);
+        const algorithmSelect = document.getElementById('algorithm-select');
+        algorithms.forEach(algorithm => {
+            let option = document.createElement('option');
+            option.value = algorithm;
+            option.textContent = algorithm;
+            algorithmSelect.appendChild(option);
+        });
+
+        //-----Regions options------
+        const regionsSet = new Set(data.data.map(obj => obj.Region));
+        const regions = Array.from(regionsSet);
         const regionSelect = document.getElementById('region-select');
         regions.forEach(region => {
             let option = document.createElement('option');
@@ -136,6 +167,26 @@ document.addEventListener('DOMContentLoaded', function() {
             option.textContent = region;
             regionSelect.appendChild(option);
         });
+
+        //-----SNR options for algorithms and regions------
+        const snrSet = new Set(data.data.map(obj => obj.SNR));
+        const snr = Array.from(snrSet);
+        console.log(snr)
+        const snrSelect = document.getElementById('snr-select');
+        const snrRegionSelect = document.getElementById('snr-region-select');
+        snr.forEach(snrValue => {
+            let option = document.createElement('option');
+            option.value = snrValue;
+            option.textContent = snrValue;
+            snrSelect.appendChild(option);
+        });
+        snr.forEach(snrValue => {
+            let option = document.createElement('option');
+            option.value = snrValue;
+            option.textContent = snrValue;
+            snrRegionSelect.appendChild(option);
+        });
+
     }
 
     function drawBoxPlot(data, selectedAlgorithm, selectedSNR, selectedType, selectedRange) {
@@ -164,13 +215,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 boxpoints: 'Outliers'
             };
             plots.push(plot);
-            const originalType = jsonData
+            const groundTruth = jsonData
                 .filter(obj => obj.Region === region)
                 .filter(obj => obj.SNR === selectedSNR)
                 .map(obj => obj[selectedType.slice(0, -7)]);
             var constantPoint = {
                 x: [region],
-                y: originalType,
+                y: groundTruth,
                 type: 'scatter',
                 mode: 'markers',
                 marker: {
@@ -215,13 +266,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 boxpoints: 'Outliers'
             };
             plots.push(plot);
-            const originalType = jsonData
+            const groundTruth = jsonData
                 .filter(obj => obj.Algorithm === algorithm)
                 .filter(obj => obj.SNR === selectedSNR)
                 .map(obj => obj[selectedType.slice(0, -7)]);
             var constantPoint = {
                 x: [algorithm],
-                y: originalType,
+                y: groundTruth,
                 type: 'scatter',
                 mode: 'markers',
                 marker: {
